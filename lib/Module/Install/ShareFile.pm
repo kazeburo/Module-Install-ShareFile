@@ -81,7 +81,7 @@ __END__
 
 =head1 NAME
 
-Module::Install::ShareFile - Install non-code file for use during run-time
+Module::Install::ShareFile - Install non-code files for use during run-time
 
 =head1 SYNOPSIS
 
