@@ -1,0 +1,27 @@
+This is Perl module Module::Install::ShareFile.
+
+INSTALLATION
+
+Module::Install::ShareFile installation is straightforward. If your CPAN shell is set up,
+you should just be able to do
+
+    % cpan Module::Install::ShareFile
+
+Download it, unpack it, then build it as per the usual:
+
+    % perl Makefile.PL
+    % make && make test
+
+Then install it:
+
+    % make install
+
+DOCUMENTATION
+
+Module::Install::ShareFile documentation is available as in POD. So you can do:
+
+    % perldoc Module::Install::ShareFile
+
+to read the documentation online with your favorite pager.
+
+Masahiro Nagano
