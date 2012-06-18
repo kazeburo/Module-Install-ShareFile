@@ -2,8 +2,6 @@ package Module::Install::ShareFile;
 
 use strict;
 use warnings;
-use File::Find;
-use ExtUtils::Manifest;
 use Carp;
 use base qw/Module::Install::Base/;
 use File::Spec;

@@ -1,8 +1,9 @@
 use inc::Module::Install;
 name 'Module-Install-ShareFile';
 all_from 'lib/Module/Install/ShareFile.pm';
+readme_pod_from 'lib/Module/Install/ShareFile.pm';
 
-# requires '';
+requires 'Module::Install', '1.00';
 
 tests 't/*.t';
 author_tests 'xt';
