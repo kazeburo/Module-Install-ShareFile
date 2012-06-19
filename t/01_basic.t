@@ -21,8 +21,22 @@ my $makefile = do {
 };
 chdir $cwd;
 
-like $makefile, qr!foo/foo.txt!;
-like $makefile, qr!bar/bar.txt!;
+my $S = ($^O eq 'MSWin32') ? "\x27" : "\x2F";
+my $foo_dr = quotemeta("${S}dist${S}\$(DISTNAME)${S}foo");
+my $foo_r = quotemeta("${S}dist${S}\$(DISTNAME)${S}foo${S}foo.txt");
+my $bar_dr = quotemeta("${S}dist${S}\$(DISTNAME)${S}bar");
+my $bar_r = quotemeta("${S}dist${S}\$(DISTNAME)${S}bar${S}bar.txt");
+my $baz_r = quotemeta("${S}module${S}Dummy-Web${S}baz.txt");
+
+
+like $makefile, qr!\(MKPATH\).+$foo_dr"!;
+like $makefile, qr!\(CHMOD\).+$foo_dr"!;
+like $makefile, qr!\(CP\).+$foo_r"!;
+like $makefile, qr!\(MKPATH\).+$bar_dr"!;
+like $makefile, qr!\(CHMOD\).+$bar_dr"!;
+like $makefile, qr!\(CP\).+$bar_r"!;
+like $makefile, qr!\(CP\).+$baz_r"!;
+
 ok(1);
 
 done_testing();
@@ -76,6 +90,7 @@ name 'Dummy';
 all_from 'lib/Dummy.pm';
 install_sharefile 'foo.txt', dist => 'foo/foo.txt';
 install_sharefile 'bar/bar.txt';
+install_sharefile 'baz.txt', type => 'module', module => 'Dummy::Web';
 tests 't/*.t';
 WriteAll;
 
@@ -84,6 +99,9 @@ foo
 
 @@ bar/bar.txt
 bar
+
+@@ baz.txt
+foo
 
 @@ lib/Dummy.pm
 package Dummy;
