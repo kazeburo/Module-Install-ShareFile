@@ -21,7 +21,7 @@ my $makefile = do {
 };
 chdir $cwd;
 
-my $S = ($^O eq 'MSWin32') ? "\x27" : "\x2F";
+my $S = ($^O eq 'MSWin32') ? "\x5c" : "\x2F";
 my $foo_dr = quotemeta("${S}dist${S}\$(DISTNAME)${S}foo");
 my $foo_r = quotemeta("${S}dist${S}\$(DISTNAME)${S}foo${S}foo.txt");
 my $bar_dr = quotemeta("${S}dist${S}\$(DISTNAME)${S}bar");
